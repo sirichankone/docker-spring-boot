@@ -61,7 +61,7 @@ stages:
       inputs:
         targetType: inline
         script: |
-          ./bin/trivy image --severity HIGH,CRITICAL,MEDIUM --ignore-unfixed $(containerRegistry)/$(imageRepository):$(tag)
+          ./bin/trivy image --severity HIGH,CRITICAL,MEDIUM --ignore-unfixed --format json \ --output trivy-report.json \ $(containerRegistry)/$(imageRepository):$(tag)
   
   # Push docker image
     - task: Docker@2
