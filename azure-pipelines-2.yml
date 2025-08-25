@@ -47,6 +47,7 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+          latest
   # Install Trivy Scanner On Agent
     - task: Bash@3
       displayName: "Install Trivy"
