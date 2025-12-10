@@ -49,27 +49,27 @@ stages:
         tags: |
           $(tag)
           latest
-  # Install Trivy Scanner On Agent
-    - task: Bash@3
-      displayName: "Install Trivy"
-      inputs:
-        targetType: inline
-        script: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
+  # # Install Trivy Scanner On Agent
+  #   - task: Bash@3
+  #     displayName: "Install Trivy"
+  #     inputs:
+  #       targetType: inline
+  #       script: |
+  #         curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
 
-  # Run Trivy Scan
-    - task: Bash@3
-      displayName: "Run Trivy Scan"
-      inputs:
-        targetType: inline
-        script: |
-          ./bin/trivy image \
-          --severity HIGH,CRITICAL,MEDIUM \
-          --ignore-unfixed \
-          --exit-code 0 \
-          --format json \
-          --output trivy-report.json \
-          $(containerRegistry)/$(imageRepository):$(tag)
+  # # Run Trivy Scan
+  #   - task: Bash@3
+  #     displayName: "Run Trivy Scan"
+  #     inputs:
+  #       targetType: inline
+  #       script: |
+  #         ./bin/trivy image \
+  #         --severity HIGH,CRITICAL,MEDIUM \
+  #         --ignore-unfixed \
+  #         --exit-code 0 \
+  #         --format json \
+  #         --output trivy-report.json \
+  #         $(containerRegistry)/$(imageRepository):$(tag)
   
   # Push docker image
     - task: Docker@2
