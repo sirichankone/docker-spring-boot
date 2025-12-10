@@ -42,7 +42,8 @@ stages:
       displayName: Build a Docker image 
       inputs:
         command: build
-        repository: $(imageRepository)
+       # repository: $(imageRepository)
+        repository: $(containerRegistry)/$(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
